@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<body style="background: #fff; padding: 50px;">
+  <svg viewBox="0 0 200 240" width="200" height="240" fill="none">
+    <g fill="#c09033">
+      <!-- Baseline and half circle -->
+      <!-- Let's say center is at x=100, y=140 -->
+      <!-- Half circle radius = 30 -->
+      <path d="M 10 140 h 55 a 35 35 0 0 1 70 0 h 55 v 6 h -180 z" />
+      
+      <!-- Rays. Center is 100, 140. Gap radius = 45 -->
+      <!-- Central ray -->
+      <path d="M 97 20 h 6 v 75 h -6 z" />
+      
+      <!-- R1: ~25 deg -->
+      <g transform="translate(100, 140) rotate(22.5)">
+        <path d="M -3 -100 h 6 v 55 h -6 z" />
+      </g>
+      <!-- R2: ~45 deg -->
+      <g transform="translate(100, 140) rotate(45)">
+        <path d="M -3 -95 h 6 v 50 h -6 z" />
+      </g>
+      <!-- R3: ~67.5 deg -->
+      <g transform="translate(100, 140) rotate(67.5)">
+        <path d="M -3 -85 h 6 v 40 h -6 z" />
+      </g>
+      <!-- R4: ~85 deg -->
+      <g transform="translate(100, 140) rotate(82)">
+        <path d="M -3 -80 h 6 v 35 h -6 z" />
+      </g>
+
+      <!-- L1: ~-25 deg -->
+      <g transform="translate(100, 140) rotate(-22.5)">
+        <path d="M -3 -100 h 6 v 55 h -6 z" />
+      </g>
+      <!-- L2: ~-45 deg -->
+      <g transform="translate(100, 140) rotate(-45)">
+        <path d="M -3 -95 h 6 v 50 h -6 z" />
+      </g>
+      <!-- L3: ~-67.5 deg -->
+      <g transform="translate(100, 140) rotate(-67.5)">
+        <path d="M -3 -85 h 6 v 40 h -6 z" />
+      </g>
+      <!-- L4: ~-85 deg -->
+      <g transform="translate(100, 140) rotate(-82)">
+        <path d="M -3 -80 h 6 v 35 h -6 z" />
+      </g>
+    </g>
+    <!-- Text -->
+    <text x="15" y="215" font-family="Arial, sans-serif" font-size="76" font-weight="600" letter-spacing="-2">
+      <tspan fill="#c09033">Up</tspan><tspan fill="#16223b">SF</tspan>
+    </text>
+  </svg>
+</body>
+</html>
