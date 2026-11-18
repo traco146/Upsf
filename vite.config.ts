@@ -1,3 +1,8 @@
+export default defineConfig({
+  base: '/Upsf/',
+  plugins: [react(), tailwindcss(), viteSingleFile()],
+  // El resto de tu configuración se mantiene igual
+});
 import path from "path";
 import { fileURLToPath } from "url";
 import tailwindcss from "@tailwindcss/vite";
