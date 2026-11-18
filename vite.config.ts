@@ -6,7 +6,7 @@ import path from "path"
 import { fileURLToPath } from "url"
 
 export default defineConfig({
-  base: './',
+  base: '/Upsf/',
   plugins: [react(), tailwindcss(), viteSingleFile()],
   resolve: {
     alias: {
