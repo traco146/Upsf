@@ -139,6 +139,18 @@
   animation: drop 0.9s cubic-bezier(0.22, 0.7, 0.25, 1) both;
 }
 
+/* --- botón "Quiero afiliarme" con brillo dorado sutil --- */
+@keyframes join-shimmer {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(192, 144, 51, 0); }
+  50% { box-shadow: 0 0 12px 2px rgba(192, 144, 51, 0.35); }
+}
+.join-cta {
+  animation: join-shimmer 3s ease-in-out infinite;
+}
+.join-cta:hover {
+  animation: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -150,7 +162,8 @@
   }
   .marquee-track,
   .pin-in,
-  .drop-in {
+  .drop-in,
+  .join-cta {
     animation: none !important;
   }
 }

@@ -32,6 +32,7 @@ export type Copy = {
     openMenu: string;
     closeMenu: string;
     ctaContact: string;
+    ctaJoin: string;
     homeSections: { id: string; t: string }[];
     pages: { pagina: Exclude<Pagina, "inicio">; t: string }[];
   };
@@ -645,7 +646,7 @@ const COPY: Record<Language, Copy> = {
       party: "Partido",
       openMenu: "Abrir menú",
       closeMenu: "Cerrar menú",
-      ctaContact: "Contactar",
+      ctaContact: "Contactar", ctaJoin: "Quiero afiliarme",
       homeSections: [
         { id: "cifras", t: "Cifras" },
         { id: "pueblo", t: "El pueblo" },
@@ -918,7 +919,7 @@ const COPY: Record<Language, Copy> = {
       party: "Party",
       openMenu: "Open menu",
       closeMenu: "Close menu",
-      ctaContact: "Contact",
+      ctaContact: "Contact", ctaJoin: "Join UpSF",
       homeSections: [
         { id: "cifras", t: "Figures" },
         { id: "pueblo", t: "The town" },
@@ -1173,7 +1174,7 @@ const COPY: Record<Language, Copy> = {
     nativeName: "Français",
     htmlLang: "fr",
     pageTitles: { inicio: "Unis pour San Fulgencio | Votre village, votre voix", "quienes-somos": "Qui sommes-nous · UpSF", estatutos: "Statuts · UpSF", contacto: "Contact · UpSF" },
-    nav: { home: "Accueil", sections: "Sections", party: "Parti", openMenu: "Ouvrir le menu", closeMenu: "Fermer le menu", ctaContact: "Contacter", homeSections: [ { id: "cifras", t: "Chiffres" }, { id: "pueblo", t: "Le village" }, { id: "fiestas", t: "Fêtes" }, { id: "tablon", t: "Panneau" }, { id: "guia", t: "Guide" }, { id: "vecinos", t: "Voix" } ], pages: [ { pagina: "quienes-somos", t: "Qui sommes-nous" }, { pagina: "estatutos", t: "Statuts" }, { pagina: "contacto", t: "Contact" } ] },
+    nav: { home: "Accueil", sections: "Sections", party: "Parti", openMenu: "Ouvrir le menu", closeMenu: "Fermer le menu", ctaContact: "Contacter", ctaJoin: "Rejoindre UpSF", homeSections: [ { id: "cifras", t: "Chiffres" }, { id: "pueblo", t: "Le village" }, { id: "fiestas", t: "Fêtes" }, { id: "tablon", t: "Panneau" }, { id: "guia", t: "Guide" }, { id: "vecinos", t: "Voix" } ], pages: [ { pagina: "quienes-somos", t: "Qui sommes-nous" }, { pagina: "estatutos", t: "Statuts" }, { pagina: "contacto", t: "Contact" } ] },
     languages: { label: "Langues", short: "FR" },
     rail: "38,11° N · 0,85° O — Vega Baja del Segura",
     ticker: ["Population 2025 · 9 769 habitants", "66,8 % nés hors d’Espagne", "Marché hebdomadaire : chaque mardi", "Fête patronale : 16–17 janvier", "Pèlerinage de San Isidro : mai", "Virgen del Remedio : octobre", "Mairie · +34 966 79 42 01", "Vega Baja del Segura · Alicante"],
@@ -1195,7 +1196,7 @@ const COPY: Record<Language, Copy> = {
     nativeName: "Nederlands",
     htmlLang: "nl",
     pageTitles: { inicio: "Verenigd voor San Fulgencio | Uw gemeente, uw stem", "quienes-somos": "Wie wij zijn · UpSF", estatutos: "Statuten · UpSF", contacto: "Contact · UpSF" },
-    nav: { home: "Home", sections: "Secties", party: "Partij", openMenu: "Menu openen", closeMenu: "Menu sluiten", ctaContact: "Contact", homeSections: [ { id: "cifras", t: "Cijfers" }, { id: "pueblo", t: "De gemeente" }, { id: "fiestas", t: "Feesten" }, { id: "tablon", t: "Prikbord" }, { id: "guia", t: "Gids" }, { id: "vecinos", t: "Stemmen" } ], pages: [ { pagina: "quienes-somos", t: "Wie wij zijn" }, { pagina: "estatutos", t: "Statuten" }, { pagina: "contacto", t: "Contact" } ] },
+    nav: { home: "Home", sections: "Secties", party: "Partij", openMenu: "Menu openen", closeMenu: "Menu sluiten", ctaContact: "Contact", ctaJoin: "Join UpSF", homeSections: [ { id: "cifras", t: "Cijfers" }, { id: "pueblo", t: "De gemeente" }, { id: "fiestas", t: "Feesten" }, { id: "tablon", t: "Prikbord" }, { id: "guia", t: "Gids" }, { id: "vecinos", t: "Stemmen" } ], pages: [ { pagina: "quienes-somos", t: "Wie wij zijn" }, { pagina: "estatutos", t: "Statuten" }, { pagina: "contacto", t: "Contact" } ] },
     languages: { label: "Talen", short: "NL" },
     rail: "38,11° N · 0,85° W — Vega Baja del Segura",
     ticker: ["Bevolking 2025 · 9.769 inwoners", "66,8% buiten Spanje geboren", "Weekmarkt: elke dinsdag", "Patroonsfeest: 16–17 januari", "San Isidro-bedevaart: mei", "Virgen del Remedio: oktober", "Gemeentehuis · +34 966 79 42 01", "Vega Baja del Segura · Alicante"],
@@ -1217,7 +1218,7 @@ const COPY: Record<Language, Copy> = {
     nativeName: "Deutsch",
     htmlLang: "de",
     pageTitles: { inicio: "Vereint für San Fulgencio | Ihr Ort, Ihre Stimme", "quienes-somos": "Wer wir sind · UpSF", estatutos: "Satzung · UpSF", contacto: "Kontakt · UpSF" },
-    nav: { home: "Start", sections: "Bereiche", party: "Partei", openMenu: "Menü öffnen", closeMenu: "Menü schließen", ctaContact: "Kontakt", homeSections: [ { id: "cifras", t: "Zahlen" }, { id: "pueblo", t: "Der Ort" }, { id: "fiestas", t: "Feste" }, { id: "tablon", t: "Pinnwand" }, { id: "guia", t: "Leitfaden" }, { id: "vecinos", t: "Stimmen" } ], pages: [ { pagina: "quienes-somos", t: "Wer wir sind" }, { pagina: "estatutos", t: "Satzung" }, { pagina: "contacto", t: "Kontakt" } ] },
+    nav: { home: "Start", sections: "Bereiche", party: "Partei", openMenu: "Menü öffnen", closeMenu: "Menü schließen", ctaContact: "Kontakt", ctaJoin: "Beitreten", homeSections: [ { id: "cifras", t: "Zahlen" }, { id: "pueblo", t: "Der Ort" }, { id: "fiestas", t: "Feste" }, { id: "tablon", t: "Pinnwand" }, { id: "guia", t: "Leitfaden" }, { id: "vecinos", t: "Stimmen" } ], pages: [ { pagina: "quienes-somos", t: "Wer wir sind" }, { pagina: "estatutos", t: "Satzung" }, { pagina: "contacto", t: "Kontakt" } ] },
     languages: { label: "Sprachen", short: "DE" },
     rail: "38,11° N · 0,85° W — Vega Baja del Segura",
     ticker: ["Bevölkerung 2025 · 9.769 Einwohner", "66,8 % außerhalb Spaniens geboren", "Wochenmarkt: jeden Dienstag", "Patronatsfest: 16.–17. Januar", "San-Isidro-Wallfahrt: Mai", "Virgen del Remedio: Oktober", "Rathaus · +34 966 79 42 01", "Vega Baja del Segura · Alicante"],
@@ -1239,7 +1240,7 @@ const COPY: Record<Language, Copy> = {
     nativeName: "Svenska",
     htmlLang: "sv",
     pageTitles: { inicio: "Förenade för San Fulgencio | Din kommun, din röst", "quienes-somos": "Vilka vi är · UpSF", estatutos: "Stadgar · UpSF", contacto: "Kontakt · UpSF" },
-    nav: { home: "Hem", sections: "Sektioner", party: "Parti", openMenu: "Öppna meny", closeMenu: "Stäng meny", ctaContact: "Kontakt", homeSections: [ { id: "cifras", t: "Siffror" }, { id: "pueblo", t: "Kommunen" }, { id: "fiestas", t: "Fester" }, { id: "tablon", t: "Anslagstavla" }, { id: "guia", t: "Guide" }, { id: "vecinos", t: "Röster" } ], pages: [ { pagina: "quienes-somos", t: "Vilka vi är" }, { pagina: "estatutos", t: "Stadgar" }, { pagina: "contacto", t: "Kontakt" } ] },
+    nav: { home: "Hem", sections: "Sektioner", party: "Parti", openMenu: "Öppna meny", closeMenu: "Stäng meny", ctaContact: "Kontakt", ctaJoin: "Gå med", homeSections: [ { id: "cifras", t: "Siffror" }, { id: "pueblo", t: "Kommunen" }, { id: "fiestas", t: "Fester" }, { id: "tablon", t: "Anslagstavla" }, { id: "guia", t: "Guide" }, { id: "vecinos", t: "Röster" } ], pages: [ { pagina: "quienes-somos", t: "Vilka vi är" }, { pagina: "estatutos", t: "Stadgar" }, { pagina: "contacto", t: "Kontakt" } ] },
     languages: { label: "Språk", short: "SV" },
     rail: "38,11° N · 0,85° V — Vega Baja del Segura",
     ticker: ["Befolkning 2025 · 9 769 invånare", "66,8 % födda utanför Spanien", "Veckomarknad: varje tisdag", "Skyddshelgonets fest: 16–17 januari", "San Isidro-pilgrimsfärd: maj", "Virgen del Remedio: oktober", "Rådhus · +34 966 79 42 01", "Vega Baja del Segura · Alicante"],

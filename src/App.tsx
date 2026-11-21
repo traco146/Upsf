@@ -35,7 +35,7 @@ function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function Cabecera({ pagina, setPagina, menuAbierto, setMenuAbierto }: { pagina: Pagina; setPagina: (p: Pagina) => void; menuAbierto: boolean; setMenuAbierto: (v: boolean) => void; }) {
+function Cabecera({ pagina, setPagina, menuAbierto, setMenuAbierto, onJoin }: { pagina: Pagina; setPagina: (p: Pagina) => void; menuAbierto: boolean; setMenuAbierto: (v: boolean) => void; onJoin: () => void; }) {
   const { copy } = useI18n();
   const navInicio = copy.nav.homeSections;
   const navPaginas = copy.nav.pages;
@@ -49,6 +49,11 @@ function Cabecera({ pagina, setPagina, menuAbierto, setMenuAbierto }: { pagina: 
     } else {
       window.location.hash = p;
     }
+  }
+
+  function handleJoin() {
+    setMenuAbierto(false);
+    onJoin();
   }
 
   return (
@@ -68,7 +73,15 @@ function Cabecera({ pagina, setPagina, menuAbierto, setMenuAbierto }: { pagina: 
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* ✦ Quiero Afiliarme — botón estrella */}
+          <button
+            onClick={handleJoin}
+            className="join-cta label hidden shrink-0 cursor-pointer border-2 border-naranja px-4 py-2.5 text-naranja transition hover:bg-naranja hover:text-cal sm:block"
+          >
+            <span className="mr-1.5" aria-hidden="true">☀︎</span>
+            {copy.nav.ctaJoin}
+          </button>
           <button onClick={() => goToPage("contacto")} className="label hidden shrink-0 cursor-pointer bg-naranja px-4 py-3 text-cal transition hover:bg-tinta sm:block">{copy.nav.ctaContact}</button>
           <button onClick={() => setMenuAbierto(!menuAbierto)} className="label flex cursor-pointer flex-col gap-[5px] p-2 lg:hidden" aria-expanded={menuAbierto} aria-label={menuAbierto ? copy.nav.closeMenu : copy.nav.openMenu}>
             <span className={`block h-[2px] w-5 bg-tinta transition-all ${menuAbierto ? "translate-y-[7px] rotate-45" : ""}`} />
@@ -97,6 +110,14 @@ function Cabecera({ pagina, setPagina, menuAbierto, setMenuAbierto }: { pagina: 
               {navPaginas.map((n) => (
                 <button key={n.pagina} onClick={() => goToPage(n.pagina)} className={`label w-full cursor-pointer border px-4 py-4 text-left transition ${pagina === n.pagina ? "border-naranja bg-naranja/10 text-naranja" : "border-tinta/15 text-tinta/70 hover:border-naranja hover:text-naranja"}`}>{n.t}</button>
               ))}
+              {/* ✦ Quiero Afiliarme — botón estrella en móvil */}
+              <button
+                onClick={handleJoin}
+                className="join-cta label w-full cursor-pointer border-2 border-naranja px-4 py-4 text-left text-naranja transition hover:bg-naranja hover:text-cal"
+              >
+                <span className="mr-1.5" aria-hidden="true">☀︎</span>
+                {copy.nav.ctaJoin}
+              </button>
               <button onClick={() => goToPage("contacto")} className="label w-full cursor-pointer bg-naranja px-4 py-4 text-left text-cal transition hover:bg-tinta">{copy.nav.ctaContact} →</button>
             </div>
           </div>
@@ -143,6 +164,14 @@ function AppInner() {
   const { copy } = useI18n();
   const [pagina, setPagina] = useState<Pagina>("inicio");
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [joinMode, setJoinMode] = useState(false);
+
+  function handleJoin() {
+    setJoinMode(true);
+    setPagina("contacto");
+    window.scrollTo(0, 0);
+    window.location.hash = "contacto";
+  }
 
   useEffect(() => {
     const syncFromHash = () => {
@@ -169,17 +198,22 @@ function AppInner() {
     document.documentElement.lang = copy.htmlLang;
   }, [copy, pagina]);
 
+  // Reset joinMode when leaving contact page
+  useEffect(() => {
+    if (pagina !== "contacto") setJoinMode(false);
+  }, [pagina]);
+
   return (
     <div id="top" className="relative min-h-screen bg-cal text-tinta">
       <div className="grain" aria-hidden="true" />
-      <Cabecera pagina={pagina} setPagina={setPagina} menuAbierto={menuAbierto} setMenuAbierto={setMenuAbierto} />
+      <Cabecera pagina={pagina} setPagina={setPagina} menuAbierto={menuAbierto} setMenuAbierto={setMenuAbierto} onJoin={handleJoin} />
       <FloatingLanguages />
       <Rail />
       <main>
         {pagina === "inicio" && <PaginaInicio />}
         {pagina === "quienes-somos" && <QuienesSomos />}
         {pagina === "estatutos" && <Estatutos />}
-        {pagina === "contacto" && <Contacto />}
+        {pagina === "contacto" && <Contacto joinMode={joinMode} />}
       </main>
       <Pie pagina={pagina} setPagina={setPagina} />
     </div>

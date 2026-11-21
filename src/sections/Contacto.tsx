@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Reveal, SectionHead } from "../lib/ui";
 import { useI18n } from "../i18n";
 
@@ -6,12 +6,19 @@ type Campo = "nombre" | "email" | "telefono" | "asunto" | "mensaje";
 type Errores = Partial<Record<Campo, string>>;
 const CORREO_DESTINO = "contacto@upsanfulgencio.es";
 
-export default function Contacto() {
+export default function Contacto({ joinMode = false }: { joinMode?: boolean }) {
   const { copy } = useI18n();
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [telefono, setTelefono] = useState("");
   const [asunto, setAsunto] = useState("");
+
+  // Pre-select "join" subject when arriving from the Join button
+  useEffect(() => {
+    if (joinMode && copy.contact.subjects.length >= 4) {
+      setAsunto(copy.contact.subjects[3]); // "Quiero afiliarme" / "I want to join" etc.
+    }
+  }, [joinMode, copy]);
   const [mensaje, setMensaje] = useState("");
   const [errores, setErrores] = useState<Errores>({});
   const [enviado, setEnviado] = useState(false);
