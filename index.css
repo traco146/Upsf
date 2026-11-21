@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cal: #f8f6f0;
+  --color-cal2: #ebe7de;
+  --color-tinta: #0f1626;
+  --color-verde: #16223b;
+  --color-naranja: #c09033;
+  --color-brasa: #d4a347;
+  --color-salina: #2a4066;
+  --color-taupe: #78736a;
+  --color-alerta: #a32b1e;
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-cal);
+    color: var(--color-tinta);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+
+  ::selection {
+    background: var(--color-naranja);
+    color: var(--color-cal);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-salina);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .label {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.6875rem;
+    line-height: 1.1;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+  }
+}
+
+/* --- grano de papel / película sobre toda la página --- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* --- entrada por scroll --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s cubic-bezier(0.22, 0.7, 0.25, 1);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- marquesina del tablón --- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 46s linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* --- aviso nuevo pegado a tablón --- */
+@keyframes pin {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px) rotate(-1.6deg) scale(0.985);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(3px) rotate(0.5deg) scale(1.004);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+.pin-in {
+  animation: pin 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.drop-in {
+  animation: drop 0.9s cubic-bezier(0.22, 0.7, 0.25, 1) both;
+}
+
+/* --- botón "Quiero afiliarme" con brillo dorado sutil --- */
+@keyframes join-shimmer {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(192, 144, 51, 0); }
+  50% { box-shadow: 0 0 12px 2px rgba(192, 144, 51, 0.35); }
+}
+.join-cta {
+  animation: join-shimmer 3s ease-in-out infinite;
+}
+.join-cta:hover {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee-track,
+  .pin-in,
+  .drop-in,
+  .join-cta {
+    animation: none !important;
+  }
+}
