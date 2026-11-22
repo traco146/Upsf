@@ -60,22 +60,36 @@ export function Manifiesto() {
           <p className="label text-naranja">{copy.manifesto.eyebrow}</p>
         </Reveal>
 
-        <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:gap-14">
+        <div className="mt-6 grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-14">
           <Reveal className="lg:col-span-7">
-            <p className="display text-[clamp(1.6rem,3vw,2.35rem)] leading-[1.22] font-light text-tinta">
-              {copy.manifesto.lead[0]}
+            <h2 className="display text-[clamp(2rem,3.6vw,3rem)] leading-[1.04] font-black tracking-[-0.025em] text-tinta">
+              {copy.manifesto.title}
+            </h2>
+
+            <p className="mt-6 border-l-2 border-naranja pl-5 text-[1.1rem] leading-[1.6] text-tinta/85">
+              {copy.manifesto.intro}
             </p>
-            <div className="mt-8 columns-1 gap-8 text-[1rem] leading-[1.75] text-tinta/75 sm:columns-2">
-              {copy.manifesto.lead.slice(1).map((p) => (
-                <p key={p} className="mb-4">{p}</p>
-              ))}
-              <p>
-                <span className="display text-[1.35rem] font-black text-tinta">{copy.hero.tagline}.</span>
-              </p>
+
+            <div className="mt-8 grid gap-x-9 gap-y-5 border-t border-tinta/15 pt-7 text-[0.98rem] leading-[1.75] text-tinta/75 sm:grid-cols-2">
+              <div className="space-y-4">
+                <p>{copy.manifesto.paragraphs[0]}</p>
+                <p>{copy.manifesto.paragraphs[1]}</p>
+              </div>
+              <div className="flex flex-col justify-between gap-6">
+                <p>{copy.manifesto.paragraphs[2]}</p>
+                <div className="border-t border-tinta/15 pt-5">
+                  <p className="display text-[1.15rem] leading-[1.38] font-light text-tinta">
+                    {copy.manifesto.closing}
+                  </p>
+                  <p className="mt-3">
+                    <span className="display text-[1.4rem] font-black text-naranja">{copy.hero.tagline}.</span>
+                  </p>
+                </div>
+              </div>
             </div>
           </Reveal>
 
-          <Reveal delay={120} className="lg:col-span-5">
+          <Reveal delay={120} className="lg:col-span-5 lg:sticky lg:top-24">
             <figure>
               <img src="images/citricos.jpg" alt={copy.manifesto.imageAlt} className="w-full object-cover" style={{ aspectRatio: "4 / 5" }} />
               <figcaption className="mt-3 border-t border-tinta/20 pt-3 text-[0.8rem] leading-snug text-taupe">{copy.manifesto.figcaption}</figcaption>
