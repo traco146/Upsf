@@ -173,9 +173,9 @@ export function Callejon() {
       <img
         src="images/redes.jpg"
         alt={copy.alley.imageAlt}
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className="absolute inset-0 h-full w-full object-cover object-[50%_36%]"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(108deg,rgba(15,22,38,0.95)_0%,rgba(15,22,38,0.86)_48%,rgba(15,22,38,0.80)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(108deg,rgba(15,22,38,0.93)_0%,rgba(15,22,38,0.82)_48%,rgba(15,22,38,0.72)_100%)]" />
 
       <div className="relative mx-auto w-full max-w-[1440px] px-5 py-20 sm:px-8 lg:px-14 lg:py-24">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-14">
