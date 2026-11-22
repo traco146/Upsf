@@ -1,5 +1,6 @@
 import { Reveal, SectionHead } from "../lib/ui";
 import { useI18n, type Pagina } from "../i18n";
+import { FACEBOOK_GROUP_URL, PUBLICACIONES } from "../publicaciones";
 
 export function Cifras() {
   const { copy } = useI18n();
@@ -361,30 +362,94 @@ export function Guia() {
 }
 
 export function Vecinos() {
-  const { copy } = useI18n();
+  const { copy, lang } = useI18n();
+  const gridCols = PUBLICACIONES.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3";
+
   return (
     <section id="vecinos" className="bg-tinta text-cal">
       <div className="mx-auto w-full max-w-[1440px] px-5 py-16 sm:px-8 lg:px-14 lg:py-24">
         <Reveal>
-          <SectionHead tono="claro" eyebrow={copy.neighbors.eyebrow} titulo={copy.neighbors.title} />
+          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <SectionHead tono="claro" eyebrow={copy.neighbors.eyebrow} titulo={copy.neighbors.title} />
+            <a
+              href={FACEBOOK_GROUP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit shrink-0 items-center gap-2.5 border border-cal/25 bg-verde/60 px-5 py-3 text-[0.76rem] font-semibold tracking-[0.14em] text-cal uppercase transition hover:border-brasa hover:text-brasa"
+            >
+              <span className="flex h-5 w-5 items-center justify-center rounded-[5px] bg-[#1877F2] text-white">
+                <svg viewBox="0 0 24 24" className="h-4 w-4 translate-y-[1px]" fill="currentColor" aria-hidden="true">
+                  <path d="M13.85 22v-8.1h2.72l.41-3.16h-3.13V8.72c0-.91.25-1.54 1.56-1.54h1.67V4.35c-.29-.04-1.28-.12-2.44-.12-2.41 0-4.07 1.47-4.07 4.18v2.33H7.84v3.16h2.73V22h3.28Z" />
+                </svg>
+              </span>
+              <span>{copy.neighbors.viewAll}</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
-          {copy.neighbors.items.map((v, i) => (
-            <Reveal key={v.nombre} delay={i * 90}>
-              <figure className="flex h-full flex-col border-t-2 border-brasa pt-6">
-                <blockquote className="display flex-1 text-[1.15rem] leading-[1.45] text-cal/90">
-                  {v.lang && <span className="label mr-2 align-middle text-brasa">{v.lang}</span>}
-                  «{v.cita}»
-                </blockquote>
-                {v.trad && <p className="mt-4 text-[0.86rem] leading-relaxed text-cal/65 italic">{v.trad}</p>}
-                <figcaption className="mt-6 border-t border-cal/20 pt-4">
-                  <p className="display text-[1.05rem] font-black text-cal">{v.nombre}</p>
-                  <p className="mt-1 text-[0.78rem] text-cal/70">{v.lugar}</p>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
+        <div className={`mt-12 grid gap-8 ${gridCols}`}>
+          {PUBLICACIONES.map((pub, i) => {
+            const loc = lang !== "es" ? pub.i18n?.[lang] : undefined;
+            const etiqueta = loc?.etiqueta ?? pub.etiqueta;
+            const titulo = loc?.titulo ?? pub.titulo;
+            const texto = loc?.texto ?? pub.texto;
+            const cierre = loc?.cierre ?? pub.cierre;
+
+            return (
+              <Reveal key={pub.id} delay={i * 90}>
+                <article className="flex h-full flex-col justify-between border border-cal/15 border-t-2 border-t-brasa bg-verde/55 p-7 transition duration-300 hover:border-brasa/50 hover:bg-verde/80">
+                  <div>
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="inline-flex items-center gap-2 text-[0.72rem] font-semibold tracking-[0.14em] text-cal/75 uppercase">
+                        <span className="flex h-5 w-5 items-center justify-center rounded-[5px] bg-[#1877F2] text-white">
+                          <svg viewBox="0 0 24 24" className="h-4 w-4 translate-y-[1px]" fill="currentColor" aria-hidden="true">
+                            <path d="M13.85 22v-8.1h2.72l.41-3.16h-3.13V8.72c0-.91.25-1.54 1.56-1.54h1.67V4.35c-.29-.04-1.28-.12-2.44-.12-2.41 0-4.07 1.47-4.07 4.18v2.33H7.84v3.16h2.73V22h3.28Z" />
+                          </svg>
+                        </span>
+                        Facebook · UpSF
+                      </span>
+                      <span className="label text-brasa">{etiqueta}</span>
+                    </div>
+
+                    {pub.imagen && (
+                      <div className="mt-5 overflow-hidden border border-cal/15">
+                        <img src={pub.imagen} alt={titulo} className="h-48 w-full object-cover" />
+                      </div>
+                    )}
+
+                    <h3 className="display mt-5 text-[1.45rem] leading-[1.2] font-black text-cal">
+                      {titulo}
+                    </h3>
+
+                    {texto && (
+                      <p className="mt-4 text-[0.96rem] leading-[1.7] text-cal/80">
+                        {texto}
+                      </p>
+                    )}
+
+                    {cierre && (
+                      <p className="display mt-4 text-[1.15rem] font-bold text-brasa">
+                        {cierre}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="mt-7 border-t border-cal/15 pt-4">
+                    <a
+                      href={pub.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-[0.78rem] font-semibold tracking-[0.14em] text-brasa uppercase transition hover:text-cal"
+                    >
+                      <span>{copy.neighbors.readMore}</span>
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
