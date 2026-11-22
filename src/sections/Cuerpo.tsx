@@ -324,11 +324,33 @@ export function Guia() {
 
         <dl className="mt-12 grid gap-x-14 border-t border-tinta/25 sm:grid-cols-2">
           {copy.guide.items.map((g, i) => (
-            <Reveal key={g.t} delay={i * 45}>
+            <Reveal key={g.t} delay={i * 45} className={g.list ? "sm:col-span-2" : ""}>
               <div className="flex flex-col gap-1 border-b border-tinta/15 py-5 transition hover:bg-cal/70">
-                <dt className="display text-[1.25rem] leading-tight font-black text-tinta">{g.t}</dt>
-                <dd className="text-[0.95rem] leading-relaxed text-tinta/75">{g.d}</dd>
-                {g.m && <dd className="text-[0.82rem] text-naranja">{g.m}</dd>}
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <dt className="display text-[1.25rem] leading-tight font-black text-tinta">{g.t}</dt>
+                  {g.list && g.m && <span className="text-[0.82rem] text-naranja">{g.m}</span>}
+                </div>
+                {g.d && <dd className="text-[0.95rem] leading-relaxed text-tinta/75">{g.d}</dd>}
+                {!g.list && g.m && <dd className="text-[0.82rem] text-naranja">{g.m}</dd>}
+                {g.list && (
+                  <dd className="mt-3 grid gap-3 sm:grid-cols-2">
+                    {g.list.map((item) => (
+                      <div
+                        key={item.name}
+                        className="flex flex-col justify-between gap-1 border border-tinta/15 bg-cal/60 px-4 py-3"
+                      >
+                        <p className="font-semibold text-tinta">{item.name}</p>
+                        <p className="text-[0.88rem] text-tinta/75">{item.address}</p>
+                        <a
+                          href={`tel:+34${item.phone.replace(/\s+/g, "")}`}
+                          className="tabular mt-0.5 inline-flex w-fit items-center gap-1.5 text-[0.86rem] font-semibold text-naranja underline decoration-naranja/35 underline-offset-4 transition hover:text-tinta hover:decoration-tinta"
+                        >
+                          Tel. {item.phone}
+                        </a>
+                      </div>
+                    ))}
+                  </dd>
+                )}
               </div>
             </Reveal>
           ))}
