@@ -290,13 +290,21 @@ export function Fiestas() {
 
           <Reveal delay={140} className="lg:sticky lg:top-24 lg:self-start">
             <figure>
-              <img src="images/fiesta.jpg" alt={copy.festivals.imageAlt} className="w-full object-cover" style={{ aspectRatio: "3 / 4" }} />
-              <figcaption className="mt-3 border-t border-cal/20 pt-3 text-[0.8rem] leading-snug text-cal/70">{copy.festivals.figcaption}</figcaption>
+              <img src="images/fiesta.jpg" alt={copy.festivals.imageAlt} className="w-full object-cover" style={{ aspectRatio: "16 / 10" }} />
             </figure>
             <div className="mt-6 border border-cal/25 p-5">
               <p className="label text-brasa">{copy.festivals.marketEyebrow}</p>
-              <p className="display mt-2 text-[1.6rem] leading-tight font-black text-cal">{copy.festivals.marketTitle}</p>
-              <p className="mt-2 text-[0.9rem] leading-relaxed text-cal/70">{copy.festivals.marketBody}</p>
+              <ul className="mt-4 space-y-3 border-b border-cal/20 pb-4">
+                {copy.festivals.marketDays.map((m) => (
+                  <li key={m.dia} className="text-[0.9rem] leading-snug">
+                    <p className="font-semibold text-cal">
+                      <span className="text-brasa">{m.dia}</span> — {m.zona}
+                    </p>
+                    <p className="mt-0.5 text-[0.82rem] text-cal/70">{m.lugar}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-[0.9rem] leading-relaxed text-cal/80">{copy.festivals.marketBody}</p>
             </div>
           </Reveal>
         </div>

@@ -54,7 +54,7 @@ export default function Tablon() {
   return (
     <section id="tablon" className="relative bg-cal">
       <div className="border-y border-tinta/15">
-        <img src="images/mercado.jpg" alt={copy.board.imageAlt} className="h-44 w-full object-cover object-[50%_62%] sm:h-60" />
+        <img src="images/mercado.jpg" alt={copy.board.imageAlt} className="h-44 w-full object-cover object-center sm:h-60 lg:h-72" />
       </div>
 
       <div className="mx-auto w-full max-w-[1440px] px-5 py-16 sm:px-8 lg:px-14 lg:py-24">
