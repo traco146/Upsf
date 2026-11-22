@@ -742,7 +742,7 @@ const COPY: Record<Language, Copy> = {
         "Entendemos la política local como una responsabilidad con nuestros vecinos: escuchar, proponer, trabajar y rendir cuentas. Sin depender de siglas nacionales, con la mirada puesta en nuestro municipio y en las personas que lo forman.",
       ],
       closing: "Porque San Fulgencio no se construye desde una sola calle ni desde una sola voz. Se construye entre todos.",
-      figcaption: "Cosecha de cítricos en la partida de regadío. La agricultura del Segura sigue siendo el oficio antiguo del municipio, aunque hoy conviva con miles de jubilados europeos.",
+      figcaption: "Cosecha de cítricos en la partida de regadío. La agricultura del Segura sigue siendo el oficio antiguo del municipio, aunque hoy conviva con miles de ciudadanos europeos.",
       imageAlt: "Naranjas recién recogidas en una caja de madera sobre la tierra de la vega",
     },
     alley: {
@@ -1031,7 +1031,7 @@ const COPY: Record<Language, Copy> = {
         "We see local politics as a responsibility to our neighbours: listening, proposing, working and being accountable. Independent of national party agendas, focused solely on our municipality and the people who make it up.",
       ],
       closing: "Because San Fulgencio is not built from a single street or a single voice. It is built together.",
-      figcaption: "Citrus harvest in the irrigated plots. Farming remains the municipality’s oldest trade, even while coexisting with thousands of European retirees.",
+      figcaption: "Citrus harvest in the irrigated plots. Farming remains the municipality’s oldest trade, even while coexisting with thousands of European citizens.",
       imageAlt: "Freshly picked oranges in a wooden crate on the soil of the Segura plain",
     },
     alley: {
